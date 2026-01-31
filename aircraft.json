@@ -1,0 +1,109 @@
+{
+  "name": "X-wing (VTOL + Utopia cruise + RADIO boost)",
+  "version": 1,
+  "description": "X-wing with VTOL lift, fast cruise, and high boost at full throttle. Includes S-foils animation.",
+  "model": {
+    "file": "model.glb",
+    "scale": 1.0,
+    "center": [0, 0, 0]
+  },
+
+  "animations": {
+    "sfoils": {
+      "type": "gltf",
+      "name": "Attack Position",
+      "min": 40,
+      "max": 120,
+      "speed": 1.0,
+      "loop": false,
+      "key": "Shift+F",
+      "start": 0
+    }
+  },
+
+  "aircraft": {
+    "type": "airplane",
+    "mass": 4800,
+    "inertia": [6500, 9500, 13000],
+    "drag": 0.0011,
+    "frontalArea": 1.7,
+    "wingArea": 28.0,
+    "wingSpan": 11.2,
+    "liftCoefficient": 1.65,
+    "stallSpeed": 55,
+    "maxSpeed": 6500,
+    "maxG": 18
+  },
+
+  "controls": {
+    "rollRate": 2.1,
+    "pitchRate": 1.9,
+    "yawRate": 1.2,
+    "bankLimiter": 1.0
+  },
+
+  "engine": {
+    "type": "jet",
+    "throttleResponse": 1.0,
+    "maxThrust": 320000,
+    "afterburner": {
+      "enabled": true,
+      "thrustMultiplier": 5.5
+    }
+  },
+
+  "engines": [
+    {
+      "name": "vtol_lift",
+      "position": [0.0, 0.0, 0.0],
+      "direction": [0, 1, 0],
+      "thrust": 140000
+    },
+    {
+      "name": "rear_1",
+      "position": [2.2, 0.0, -0.3],
+      "direction": [0, 0, -1],
+      "thrust": 210000
+    },
+    {
+      "name": "rear_2",
+      "position": [-2.2, 0.0, -0.3],
+      "direction": [0, 0, -1],
+      "thrust": 210000
+    },
+    {
+      "name": "rear_3",
+      "position": [2.2, 0.0, 0.3],
+      "direction": [0, 0, -1],
+      "thrust": 210000
+    },
+    {
+      "name": "rear_4",
+      "position": [-2.2, 0.0, 0.3],
+      "direction": [0, 0, -1],
+      "thrust": 210000
+    }
+  ],
+
+  "gear": {
+    "hasGear": true,
+    "wheelFriction": 1.6,
+    "brakePower": 1.0,
+    "steering": 0.65
+  },
+
+  "autopilot": {
+    "enabled": true
+  },
+
+  "cameras": {
+    "cockpit": {
+      "position": [0.0, 1.05, 2.85],
+      "lookAt": [0.0, 1.05, -40.0]
+    },
+    "chase": {
+      "position": [0.0, 3.2, 14.5],
+      "lookAt": [0.0, 1.5, -10.0]
+    }
+  }
+}
