@@ -23,10 +23,20 @@
         "name": "root",
         "type": "root",
         "position": [0, 0, 0],
+        "rotation": [0, 0, -90],
         "model": "model.glb",
-        "gltf2model": {
-          "url": "model.glb"
-        }
+        "gltf2model": { "url": "model.glb" }
+      },
+
+      {
+        "name": "frame",
+        "type": "frame",
+        "collisionPoints": [
+          [ 0.0,  1.5, -0.25],
+          [ 0.0, -1.5, -0.25],
+          [ 1.2,  0.0, -0.25],
+          [-1.2,  0.0, -0.25]
+        ]
       },
 
       {
@@ -36,9 +46,7 @@
         "liftFactor": 18,
         "dragFactor": 0.2,
         "forceDirection": "X",
-        "points": {
-          "forceSourcePoint": [0, 1.2, 0]
-        }
+        "points": { "forceSourcePoint": [0, 1.2, 0] }
       },
 
       {
@@ -46,9 +54,7 @@
         "type": "airfoil",
         "area": 10,
         "forceDirection": "Z",
-        "points": {
-          "forceSourcePoint": [-2.5, 0.3, 0]
-        },
+        "points": { "forceSourcePoint": [-2.5, 0.3, 0] },
         "rotation": [-1, 0, 0],
         "stallIncidence": 15,
         "zeroLiftIncidence": 20,
@@ -60,9 +66,7 @@
         "type": "airfoil",
         "area": 10,
         "forceDirection": "Z",
-        "points": {
-          "forceSourcePoint": [2.5, 0.3, 0]
-        },
+        "points": { "forceSourcePoint": [2.5, 0.3, 0] },
         "rotation": [-1, 0, 0],
         "stallIncidence": 15,
         "zeroLiftIncidence": 20,
@@ -77,11 +81,17 @@
         "forceDirection": "Y",
         "contrail": true,
         "points": {
-          "forceSourcePoint": [0, -2.8, 0.0],
+          "forceSourcePoint": [0, -2.5, 0.0],
           "contrailAnchor": [0, -20, 0.0]
         }
       }
     ],
+
+    "contactProperties": {
+      "wheel": { "frictionCoef": 2, "dynamicFriction": 0.01, "rollingFriction": 0.00001, "damping": 1 },
+      "frame": { "frictionCoef": 2, "dynamicFriction": 0.01, "damping": 1 },
+      "airfoil": { "frictionCoef": 2, "dynamicFriction": 0.01, "damping": 1 }
+    },
 
     "cameras": {
       "follow": { "distance": 25 }
