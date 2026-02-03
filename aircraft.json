@@ -7,12 +7,6 @@
     "dragFactor": 0.6,
     "com": [0, 0, 0],
 
-    "gearTravelTime": 4,
-    "flapsTravelTime": 1,
-    "flapsSteps": 0,
-    "airbrakesTravelTime": 1,
-    "optionalAnimatedPartTravelTime": 2,
-
     "zeroThrustAltitude": 120000,
     "minRPM": 1000,
     "maxRPM": 10000,
@@ -24,31 +18,12 @@
     "startTilt": 0,
     "minimumSpeed": 0,
 
-    "autopilot": {
-      "effectivenessRatioMaximum": 5,
-      "pitchAnglePID": [0.01, 0.001, 0.001],
-      "elevatorPitchPID": [0.01, 0.001, 0.00000001],
-      "bankAnglePID": [0.1, 0.001, 0.01],
-      "aileronsRollPID": [0.1, 0.001, 0.00000001],
-      "baseClimbrate": 800,
-      "baseDescentrate": -800,
-      "maxPitchAngle": 30,
-      "minPitchAngle": -30,
-      "maxBankAngle": 45
-    },
-
-    "instruments": {
-      "optionx": "",
-      "spoilers": "",
-      "brakes": "",
-      "gear": ""
-    },
-
     "parts": [
       {
         "name": "root",
         "type": "root",
         "position": [0, 0, 0],
+        "model": "model.glb",
         "gltf2model": {
           "url": "model.glb"
         }
@@ -95,26 +70,6 @@
       },
 
       {
-        "name": "verticalStab",
-        "type": "airfoil",
-        "area": 2,
-        "forceDirection": "X",
-        "points": {
-          "forceSourcePoint": [0, -2.5, 1.2]
-        }
-      },
-
-      {
-        "name": "horizontalStab",
-        "type": "airfoil",
-        "area": 2,
-        "forceDirection": "Z",
-        "points": {
-          "forceSourcePoint": [0, -2.2, 0]
-        }
-      },
-
-      {
         "name": "engine",
         "type": "engine",
         "thrust": 90000,
@@ -125,36 +80,11 @@
           "forceSourcePoint": [0, -2.8, 0.0],
           "contrailAnchor": [0, -20, 0.0]
         }
-      },
-
-      {
-        "name": "sfoils",
-        "type": "none",
-        "node": "Attack Position",
-        "animations": [
-          {
-            "type": "rotate",
-            "axis": "X",
-            "value": "optionalAnimatedPartPosition",
-            "ratio": 1
-          }
-        ]
       }
     ],
 
-    "contactProperties": {
-      "wheel": { "frictionCoef": 2, "dynamicFriction": 0.01, "rollingFriction": 0.00001, "damping": 1 },
-      "frame": { "frictionCoef": 2, "dynamicFriction": 0.01, "damping": 1 },
-      "airfoil": { "frictionCoef": 2, "dynamicFriction": 0.01, "damping": 1 }
-    },
-
     "cameras": {
-      "follow": { "distance": 25 },
-      "cockpit": {
-        "position": [0, 1.2, 0.6],
-        "orientation": [0, 0, 0],
-        "FOV": 1.7
-      }
+      "follow": { "distance": 25 }
     }
   }
 ]
