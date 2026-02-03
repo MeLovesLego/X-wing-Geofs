@@ -1,110 +1,159 @@
 [
-    {
-    "name": "X-wing (VTOL + Utopia cruise + RADIO boost)",
-    "version": 1,
-    "description": "X-wing with VTOL lift, fast cruise, and high boost at full throttle. Includes S-foils animation.",
-    "model": {
-      "file": "model.glb",
-      "scale": 1.0,
-      "center": [0, 0, 0]
+  {
+    "forceZup": false,
+
+    "mass": 6000,
+    "tensorFactor": 0.2,
+    "dragFactor": 0.6,
+    "com": [0, 0, 0],
+
+    "gearTravelTime": 4,
+    "flapsTravelTime": 1,
+    "flapsSteps": 0,
+    "airbrakesTravelTime": 1,
+    "optionalAnimatedPartTravelTime": 2,
+
+    "zeroThrustAltitude": 120000,
+    "minRPM": 1000,
+    "maxRPM": 10000,
+    "driveRatio": 0.25,
+    "engineInertia": 2,
+    "startupTime": 3,
+
+    "startAltitude": 2,
+    "startTilt": 0,
+    "minimumSpeed": 0,
+
+    "autopilot": {
+      "effectivenessRatioMaximum": 5,
+      "pitchAnglePID": [0.01, 0.001, 0.001],
+      "elevatorPitchPID": [0.01, 0.001, 0.00000001],
+      "bankAnglePID": [0.1, 0.001, 0.01],
+      "aileronsRollPID": [0.1, 0.001, 0.00000001],
+      "baseClimbrate": 800,
+      "baseDescentrate": -800,
+      "maxPitchAngle": 30,
+      "minPitchAngle": -30,
+      "maxBankAngle": 45
     },
 
-    "animations": {
-      "sfoils": {
-        "type": "gltf",
-        "name": "Attack Position",
-        "min": 40,
-        "max": 120,
-        "speed": 1.0,
-        "loop": false,
-        "key": "Shift+F",
-        "start": 0
-      }
+    "instruments": {
+      "optionx": "",
+      "spoilers": "",
+      "brakes": "",
+      "gear": ""
     },
 
-    "aircraft": {
-      "type": "airplane",
-      "mass": 4800,
-      "inertia": [6500, 9500, 13000],
-      "drag": 0.0011,
-      "frontalArea": 1.7,
-      "wingArea": 28.0,
-      "wingSpan": 11.2,
-      "liftCoefficient": 1.65,
-      "stallSpeed": 55,
-      "maxSpeed": 6500,
-      "maxG": 18
-    },
-
-    "controls": {
-      "rollRate": 2.1,
-      "pitchRate": 1.9,
-      "yawRate": 1.2,
-      "bankLimiter": 1.0
-    },
-
-    "engine": {
-      "type": "jet",
-      "throttleResponse": 1.0,
-      "maxThrust": 320000,
-      "afterburner": {
-        "enabled": true,
-        "thrustMultiplier": 5.5
-      }
-    },
-
-    "engines": [
+    "parts": [
       {
-        "name": "vtol_lift",
-        "position": [0.0, 0.0, 0.0],
-        "direction": [0, 1, 0],
-        "thrust": 140000
+        "name": "root",
+        "type": "root",
+        "position": [0, 0, 0],
+        "gltf2model": {
+          "url": "model.glb"
+        }
       },
+
       {
-        "name": "rear_1",
-        "position": [2.2, 0.0, -0.3],
-        "direction": [0, 0, -1],
-        "thrust": 210000
+        "name": "body",
+        "type": "airfoil",
+        "position": [0, 0, 0],
+        "liftFactor": 18,
+        "dragFactor": 0.2,
+        "forceDirection": "X",
+        "points": {
+          "forceSourcePoint": [0, 1.2, 0]
+        }
       },
+
       {
-        "name": "rear_2",
-        "position": [-2.2, 0.0, -0.3],
-        "direction": [0, 0, -1],
-        "thrust": 210000
+        "name": "leftWing",
+        "type": "airfoil",
+        "area": 10,
+        "forceDirection": "Z",
+        "points": {
+          "forceSourcePoint": [-2.5, 0.3, 0]
+        },
+        "rotation": [-1, 0, 0],
+        "stallIncidence": 15,
+        "zeroLiftIncidence": 20,
+        "stalls": true
       },
+
       {
-        "name": "rear_3",
-        "position": [2.2, 0.0, 0.3],
-        "direction": [0, 0, -1],
-        "thrust": 210000
+        "name": "rightWing",
+        "type": "airfoil",
+        "area": 10,
+        "forceDirection": "Z",
+        "points": {
+          "forceSourcePoint": [2.5, 0.3, 0]
+        },
+        "rotation": [-1, 0, 0],
+        "stallIncidence": 15,
+        "zeroLiftIncidence": 20,
+        "stalls": true
       },
+
       {
-        "name": "rear_4",
-        "position": [-2.2, 0.0, 0.3],
-        "direction": [0, 0, -1],
-        "thrust": 210000
+        "name": "verticalStab",
+        "type": "airfoil",
+        "area": 2,
+        "forceDirection": "X",
+        "points": {
+          "forceSourcePoint": [0, -2.5, 1.2]
+        }
+      },
+
+      {
+        "name": "horizontalStab",
+        "type": "airfoil",
+        "area": 2,
+        "forceDirection": "Z",
+        "points": {
+          "forceSourcePoint": [0, -2.2, 0]
+        }
+      },
+
+      {
+        "name": "engine",
+        "type": "engine",
+        "thrust": 90000,
+        "afterBurnerThrust": 180000,
+        "forceDirection": "Y",
+        "contrail": true,
+        "points": {
+          "forceSourcePoint": [0, -2.8, 0.0],
+          "contrailAnchor": [0, -20, 0.0]
+        }
+      },
+
+      {
+        "name": "sfoils",
+        "type": "none",
+        "node": "Attack Position",
+        "animations": [
+          {
+            "type": "rotate",
+            "axis": "X",
+            "value": "optionalAnimatedPartPosition",
+            "ratio": 1
+          }
+        ]
       }
     ],
 
-    "gear": {
-      "hasGear": true,
-      "wheelFriction": 1.6,
-      "brakePower": 1.0,
-      "steering": 0.65
-    },
-
-    "autopilot": {
-      "enabled": true
+    "contactProperties": {
+      "wheel": { "frictionCoef": 2, "dynamicFriction": 0.01, "rollingFriction": 0.00001, "damping": 1 },
+      "frame": { "frictionCoef": 2, "dynamicFriction": 0.01, "damping": 1 },
+      "airfoil": { "frictionCoef": 2, "dynamicFriction": 0.01, "damping": 1 }
     },
 
     "cameras": {
+      "follow": { "distance": 25 },
       "cockpit": {
-        "position": [0.0, 1.05, 2.85],
-        "lookAt": [0.0, 1.05, -40.0]
-      },
-      "chase": {
-        "position": [0.0, 3.2, 14.5],
-        "lookAt": [0.0, 1.5, -10.0]
+        "position": [0, 1.2, 0.6],
+        "orientation": [0, 0, 0],
+        "FOV": 1.7
       }
     }
   }
