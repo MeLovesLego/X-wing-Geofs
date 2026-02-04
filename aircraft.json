@@ -47,11 +47,8 @@
         "name": "root",
         "type": "root",
         "position": [0, 0, 0],
-
-        "rotation": [0, 0, -90],
-
         "model": "model.glb",
-        "gltf2model": { "url": "model.glb" }
+        "gltf2model": { "url": "model.glb?v=3" }
       },
 
       {
